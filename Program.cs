@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 
 namespace Calculater
 {
     class MainClass
     {
+        
         public static void Main(string[] args)
         {
             bool running = true;
@@ -14,8 +15,18 @@ namespace Calculater
             Console.WriteLine("-------------------------");
             Console.WriteLine();
 
+
+            Console.WriteLine("Do you want to start? 1 for Yes");
+            userInput = GetNumberFromUser();
+            if (userInput == 1)
+            {
+                running = true;
+            }
+
             while (running)
             {
+
+                Console.Clear();
                 Console.WriteLine("Type a number then press Enter");
                 num1 = GetNumberFromUser();
 
@@ -32,31 +43,24 @@ namespace Calculater
                 switch(Console.ReadLine())
                 {
                     case "a":
-                        Console.WriteLine($"Your result: {num1} + {num2} = " + (num1 + num2));
+                        Add(num1, num2);
                         PressAnyKey();
                         break;
                     case "s":
-                        Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
+                        Subtract(num1, num2);
                         PressAnyKey();
                         break;
                     case "m":
-                        Console.WriteLine($"Your result: {num1} * {num2} = " + (num1 * num2));
+                        Multiply(num1, num2);
                         PressAnyKey();
                         break;
                     case "d":
-                        while (num2 == 0)
-                        {
-                            Console.WriteLine("Enter a non-zero divisor: ");
-                            Console.WriteLine();
-                            num2 = Convert.ToInt32(Console.ReadLine());
-                        }
-                        Console.WriteLine($"Your result: {num1} / {num2} = " + (num1 / num2));
+                        Divide(num1, num2);
                         PressAnyKey();
                         break;
                     default:
                         Console.WriteLine("Invalid input, try again.");
                         break;
-
                 }
 
                 Console.WriteLine();
@@ -86,13 +90,43 @@ namespace Calculater
             }
             return userInput;
         }
+
         static void PressAnyKey()
         {
             Console.Write("Press any key to continue...");
             ConsoleKeyInfo inputKey  = Console.ReadKey();
             return;
-
         }
-       
+
+        static void Add(double num1,double num2)
+        {
+            Console.WriteLine($"Your result: {num1} + {num2} = " + (num1 + num2));
+            return; 
+        }
+
+        static void Subtract(double num1, double num2)
+        {
+            Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
+            return;
+        }
+
+        static void Multiply(double num1, double num2)
+        {
+            Console.WriteLine($"Your result: {num1} * {num2} = " + (num1 * num2));
+            return;
+        }
+
+        static void Divide(double num1, double num2)
+        {
+            while (num2 == 0)
+            {
+                Console.WriteLine("Enter a non-zero divisor: ");
+                Console.WriteLine();
+                num2 = GetNumberFromUser();
+            }
+            Console.WriteLine($"Your result: {num1} / {num2} = " + (num1 / num2));
+            return;
+        }
+
     }
 }
